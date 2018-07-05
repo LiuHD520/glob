@@ -1,7 +1,7 @@
 const express=require('express');
 const mysql=require('mysql');
 
-var db=mysql.createPool({host: 'localhost', user: 'root', password: '123456', database: 'learn'});
+var db = mysql.createPool({ host: '116.196.82.28', user: 'root', password: 'root', database: 'learn'});
 
 module.exports=function (){
   var router=express.Router();

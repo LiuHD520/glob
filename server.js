@@ -10,7 +10,9 @@ const consolidate=require('consolidate');
 const expressRoute=require('express-route');
 
 var server=express();
-server.listen(8080);
+server.listen(8080, () => {
+  console.log('app listening on port 3000.')
+});
 
 //1.获取请求数据
 //get自带
@@ -38,7 +40,7 @@ server.set('view engine', 'html');
 
 //4.route
 server.use('/', require('./route/web')());
-server.use('/admin/', require('./route/admin')());
+// server.use('/admin/', require('./route/admin')());
 
 //5.default：static
 server.use(static('./static/'));

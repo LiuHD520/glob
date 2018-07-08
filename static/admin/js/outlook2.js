@@ -1,11 +1,7 @@
 ﻿/***********************************************************************
-
-* 作者：疯狂秀才 QQ：1055818239
-* 讨论群：112044258、32994605、36534121、56271061
-* 创建日期：2011/1/17
-
+* 作者：刘合东 QQ1032015364
+* 创建日期：2018/7/15
 * 广告：本人承接各类大中小型管理系统的软件的设计与开发，有需要的朋友联系我啦~~~~
-
 **********************************************************/
 
 
@@ -14,13 +10,9 @@ $(function(){
 	InitLeftMenu();
 	tabClose();
 	tabCloseEven();
-
-
-
-
 	$('#tabs').tabs('add',{
-		title:'疯狂秀才',
-		content:createFrame('http://hxling.cnblogs.com')
+		title:'my-码云',
+		content:createFrame('https://gitee.com/liuHDloveR/events')
 	}).tabs({
         onSelect: function (title) {
             var currTab = $('#tabs').tabs('getTab', title);
@@ -29,7 +21,6 @@ $(function(){
 			var src = iframe.attr('src');
 			if(src)
 				$('#tabs').tabs('update', { tab: currTab, options: { content: createFrame(src)} });
-
         }
     });
 
@@ -70,7 +61,6 @@ function InitLeftMenu() {
 	},function(){
 		$(this).parent().removeClass("hover");
 	});
-
 	//选中第一个
 	var panels = $('#nav').accordion('panels');
 	var t = panels[0].panel('options').title;
@@ -89,7 +79,6 @@ function getIcon(menuid){
 
 	return icon;
 }
-
 function addTab(subtitle,url,icon){
 	if(!$('#tabs').tabs('exists',subtitle)){
 		$('#tabs').tabs('add',{

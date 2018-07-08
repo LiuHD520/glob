@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>博客后台管理</title>
+    <link rel="shortcut icon" href="images/titlt-alll.png" type="image/x-icon">
+    <link href="iconfont/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="comWidth content">
+            <div class="header">
+                个人博客后台登录界面
+            </div>
+            <div class="container">
+                <ul class="login">
+                  <li class="login-li01 clearfix"><h4>用户登录</h4><u>User login</u></li>  
+                  <li class="login-li02">
+                    <i class="iconfont icon-yonghuming"></i>
+                    <input type="text" class="user-name" placeholder="请输入用户名">
+                  </li>  
+                  <li class="login-li02">
+                    <i class="iconfont icon-mima"></i>
+                    <input type="password"class="pass-word" placeholder="请输入密码">
+                  </li>  
+                  <li class="login-li04">
+                    <i class="iconfont icon-yigouxuan"></i>
+                    <u>记住密码</u>
+                  </li>  
+                  <li class="login-li05">
+                        登&nbsp;&nbsp;录
+                  </li>  
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            个人node技术
+        </div>  
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).on('click','.login-li04 .iconfont', function(){
+            if ($(this).hasClass('icon-weigouxuan')) {
+                $(this).removeClass('icon-weigouxuan').addClass('icon-yigouxuan');
+            } else {
+                $(this).addClass('icon-weigouxuan').removeClass('icon-yigouxuan');
+            }
+        })
+        $(document).on('click','.login-li05', function(){
+            var username = $('.user-name').val();
+            var passwo = $('.pass-word').val();
+            $.ajax({
+                type: "POST",
+                url: '/admin/login',
+                data: {
+                    'username': username,
+                    'password': passwo
+                },
+                success:function(data){
+                    console.log(data);
+                    if(data.code == '100') {
+                        window.location.href = 'index.html';
+                    }
+                },
+                error:function(data){
+                    console.log(data);
+                }
+            });
+        })
+    </script>
+</body>
+</html>

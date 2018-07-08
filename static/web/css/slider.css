@@ -51,14 +51,14 @@
 	text-transform: uppercase;
 	color: #202020;
 	width: 70%;
-	top: 90px;
+	top: 10px;
 	font-size:6em;
 	z-index: 10;
 	text-align: center;
 }
 .da-slide p{
 	font-family: 'open_sansregular';
-	top: 195px;
+	top: 120px;
 	color: #101010;
 	font-size: 16px;
 	overflow: hidden;
@@ -102,7 +102,8 @@
 	position: relative;
 	width: 24px;
 	height:24px;
-	background: url(../images/slide-pagenat.png) no-repeat -11px 0px;
+	background: url(../images/slide-pagenat.png) no-repeat;
+	background-size: 100% 100%;
 	margin: 3px;
 	cursor: pointer;
 }

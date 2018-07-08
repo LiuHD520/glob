@@ -2,42 +2,49 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>jQuery.EasyUI- 1.2.2 应用实例</title>
+    <title>hedong-mysefl</title>
+    <link rel="shortcut icon" href="images/titlt-alll.png" type="image/x-icon">
     <link href="Css/default.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="js/themes/default/easyui.css" />
     <link rel="stylesheet" type="text/css" href="js/themes/icon.css" />
     <script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="js/jquery.easyui.min.1.2.2.js"></script>
-	<script type="text/javascript" src='js/outlook2.js'> </script>
+    <script type="text/javascript" src='js/outlook2.js'> </script>
+    <script type="text/javascript" src='js/jquery.cookie.js'> </script>
+    <!-- <script type="text/javascript" src='js/jquery.session.js'> </script> -->
     <script type="text/javascript">
 	 var _menus = {"menus":[
-						{"menuid":"1","icon":"icon-sys","menuname":"控件使用",
+						{"menuid":"1","icon":"icon-sys","menuname":"Operating plate",
 							"menus":[
-									{"menuid":"12","menuname":"疯狂秀才","icon":"icon-add","url":"http://hxling.cnblogs.com"},
+									{"menuid":"12","menuname":"个人博客","icon":"icon-add","url":"http://blog.51cto.com/13507333"},
 									{"menuid":"13","menuname":"用户管理","icon":"icon-users","url":"demo2.html"},
 									{"menuid":"14","menuname":"角色管理","icon":"icon-role","url":"demo2.html"},
 									{"menuid":"15","menuname":"权限设置","icon":"icon-set","url":"demo.html"},
 									{"menuid":"16","menuname":"系统日志","icon":"icon-log","url":"demo1.html"}
 								]
-						},{"menuid":"8","icon":"icon-sys","menuname":"员工管理",
-							"menus":[{"menuid":"21","menuname":"员工列表","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"22","menuname":"视频监控","icon":"icon-nav","url":"demo1.html"}
-								]
-						},{"menuid":"56","icon":"icon-sys","menuname":"部门管理",
-							"menus":[{"menuid":"31","menuname":"添加部门","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"32","menuname":"部门列表","icon":"icon-nav","url":"demo2.html"}
-								]
-						},{"menuid":"28","icon":"icon-sys","menuname":"财务管理",
-							"menus":[{"menuid":"41","menuname":"收支分类","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"42","menuname":"报表统计","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"43","menuname":"添加支出","icon":"icon-nav","url":"demo2.html"}
-								]
-						},{"menuid":"39","icon":"icon-sys","menuname":"商城管理",
-							"menus":[{"menuid":"51","menuname":"商品分类","icon":"icon-nav","url":"demo.html"},
-									{"menuid":"52","menuname":"商品列表","icon":"icon-nav","url":"demo1.html"},
-									{"menuid":"53","menuname":"商品订单","icon":"icon-nav","url":"demo2.html"}
-								]
 						}
+                        // ,{"menuid":"8","icon":"icon-sys","menuname":"员工管理",
+						// 	"menus":[{"menuid":"21","menuname":"员工列表","icon":"icon-nav","url":"demo.html"},
+						// 			{"menuid":"22","menuname":"视频监控","icon":"icon-nav","url":"demo1.html"}
+						// 		]
+						// },
+                        // {"menuid":"56","icon":"icon-sys","menuname":"部门管理",
+						// 	"menus":[{"menuid":"31","menuname":"添加部门","icon":"icon-nav","url":"demo1.html"},
+						// 			{"menuid":"32","menuname":"部门列表","icon":"icon-nav","url":"demo2.html"}
+						// 		]
+						// },
+                        // {"menuid":"28","icon":"icon-sys","menuname":"财务管理",
+						// 	"menus":[{"menuid":"41","menuname":"收支分类","icon":"icon-nav","url":"demo.html"},
+						// 			{"menuid":"42","menuname":"报表统计","icon":"icon-nav","url":"demo1.html"},
+						// 			{"menuid":"43","menuname":"添加支出","icon":"icon-nav","url":"demo2.html"}
+						// 		]
+						// },
+                        // {"menuid":"39","icon":"icon-sys","menuname":"商城管理",
+						// 	"menus":[{"menuid":"51","menuname":"商品分类","icon":"icon-nav","url":"demo.html"},
+						// 			{"menuid":"52","menuname":"商品列表","icon":"icon-nav","url":"demo1.html"},
+						// 			{"menuid":"53","menuname":"商品订单","icon":"icon-nav","url":"demo2.html"}
+						// 		]
+						// }
 				]};
         //设置登录窗口
         function openPwd() {
@@ -82,12 +89,10 @@
                 $newpass.val('');
                 $rePass.val('');
                 close();
-            })
-            
+            }) 
         }
-
         $(function() {
-
+            
             openPwd();
 
             $('#editpass').click(function() {
@@ -102,47 +107,54 @@
 
             $('#loginOut').click(function() {
                 $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
-
                     if (r) {
-                        location.href = '/ajax/loginout.ashx';
+                        $.cookie('user', '', { expires: -1 }); 
+                        //  $.session.clear();
+                        location.href = 'login.html';
                     }
                 });
             })
         });
-		
-		
-
     </script>
 
 </head>
 <body class="easyui-layout" style="overflow-y: hidden"  scroll="no">
 <noscript>
-<div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
-    <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
-</div></noscript>
+    <div style=" position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;">
+        <img src="images/noscript.gif" alt='抱歉，请开启脚本支持！' />
+    </div></noscript>
     <div region="north" split="true" border="false" style="overflow: hidden; height: 30px;
         background: url(images/layout-browser-hd-bg.gif) #7f99be repeat-x center 50%;
         line-height: 20px;color: #fff; font-family: Verdana, 微软雅黑,黑体">
-        <span style="float:right; padding-right:20px;" class="head">欢迎 疯狂秀才 <a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
-        <span style="padding-left:10px; font-size: 16px; "><img src="images/blocks.gif" width="20" height="20" align="absmiddle" /> jQuery.EasyUI- 1.2.2 应用实例</span>
+        <span style="float:right; padding-right:20px;" class="head">欢迎  <a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
+        <span style="padding-left:10px; font-size: 16px; "><img src="images/blocks.gif" width="20" height="20" align="absmiddle" />个人博客后台管理</span>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
-        <div class="footer">By 疯狂秀才(QQ:1055818239) jQuery.Easy-UI QQ讨论群： 112044258、32994605、36534121、56271061</div>
+        <div class="footer">By hedong -- 1032015364 </div>
     </div>
     <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
-<div id="nav" class="easyui-accordion" fit="true" border="false">
+        <div id="nav" class="easyui-accordion" fit="true" border="false">
 		<!--  导航内容 -->
-				
-			</div>
-
+		</div>
     </div>
+
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
 			<div title="欢迎使用" style="padding:20px;overflow:hidden; color:red; " >
-				<h1 style="font-size:24px;">* 作者：疯狂秀才 QQ：1055818239</h1>
-<h1 style="font-size:24px;">* BLOG: <a style="font-size:24px;color:green;" href="http://hxling.cnblogs.com">疯狂秀才的博客</a></h1>
-<h1 style="font-size:24px;">* 讨论群：112044258、32994605、36534121、56271061</h1>
-				<h1 style="font-size:24px;">* 广告：本人承接各类大中小型管理系统的软件的设计与开发，有需要的朋友联系我啦~~~~</h1>
+				<h1 style="font-size:20px;">* 作者：hedong QQ：1032015364</h1>
+                <h1 style="font-size:20px;">* BLOG: <a style="font-size:20px;color:#1296db;" href="http://blog.51cto.com/13507333">梦想代码的博客</a></h1>
+                <h1 style="font-size:20px;">* 码云: <a style="font-size:20px;color:#1296db;" href="https://gitee.com/liuHDloveR/events">个人项目以及技术技巧</a></h1>
+                <h1 style="font-size:20px;">* GitHub: <a style="font-size:20px;color:#1296db;" href="https://github.com/LiuHD520">个人GitHub</a></h1>
+                <h1 style="font-size:20px;">* 技术领域：熟练使用vue进行项目独立开发，对vue2 + vuex + vue-router + webpack + ES6有一定的认知和使用，精通响应式布局。熟练掌握封装JS库技术，方便实现各种复杂效果，提高代码编写速率。熟练JavaScript和Jquery实现页面上交互效果。Ajax运作机制，解析有深入的了解并熟练掌握jsonp、CORS等解决跨域为题的方法。自我学习weex--app前端应用开发、nuxt.js--vue-SSR渲染，同时，对react也有一定的了解以及demo实验。node.js有一定的了解涉及</h1>
+                <h1 style="font-size:20px;">常浏览技术网站</h1>
+                <h2 style="font-size:18px;">* 掘金: <a style="font-size:20px;color:#1afa29;" href="https://juejin.im/">关注前端</a></h2>
+                <h2 style="font-size:18px;">* VUE: <a style="font-size:20px;color:#1afa29;" href="https://cn.vuejs.org/">vue学习网</a></h2>
+                <h2 style="font-size:18px;">* INFOQ: <a style="font-size:20px;color:#1afa29;" href="https://www.infoq.com/">infoq最新技术浏览</a></h2>
+                <h2 style="font-size:18px;">* segmentfault: <a style="font-size:20px;color:#1afa29;" href="https://segmentfault.com/">https://segmentfault.com/</a></h2>
+                <h2 style="font-size:18px;">* leetcode: <a style="font-size:20px;color:#1afa29;" href="https://leetcode.com/">https://leetcode.com/</a></h2>
+                <h2 style="font-size:18px;">* npmjs: <a style="font-size:20px;color:#1afa29;" href="https://www.npmjs.com">https://www.npmjs.com</a></h2>
+                <h2 style="font-size:18px;">* csdn首页: <a style="font-size:20px;color:#1afa29;" href="https://www.csdn.net/">CSDN</a></h2>
+                <h2 style="font-size:18px;">* 一般搜索: <a style="font-size:20px;color:#1afa29;" href="https://www.baidu.com/">百度一下</a></h2>
 			</div>
 		</div>
     </div>
@@ -187,4 +199,11 @@
 
 
 </body>
+
+<script>
+    console.log($.cookie('user'))
+     if (!$.cookie('user')) {
+           window.location.href = 'login.html';
+    } 
+</script>
 </html>

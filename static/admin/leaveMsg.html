@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>web-banner</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <style rel="stylesheet">
+        body {
+            padding: 2%;
+        }
+        .clearfix:after{content:"."; display:block; height:0; visibility:hidden; clear:both;}
+        .clearfix{ *zoom:1; }
+        .table {
+            width: 100%;
+        }
+
+        .table table {
+            width: 90%;
+        }
+
+
+        .table table tbody tr td span {
+            display: inline-block;
+            width: 100px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .table table tbody tr td:last-child i {
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border: 1px solid #666;
+            margin: 0 4px;
+            font-style: normal;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .table table tbody tr td:last-child i:nth-child(2) {
+            background: #FF5722;
+            color: #fff;
+            border-color: #FF5722;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .pic-look {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look .content {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look .content ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look .content ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look .content ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look .content ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look .content ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look .content ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .close-btn {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+        }
+
+        .pic-look02 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look02 .content02 {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look02 .content02 ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look02 .content02 ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look02 .content02 ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look02 .content02 ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look02 .content02 ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look02 .content02 ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .pic-look02 .content02 ul li input {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 40px;
+        }
+
+        .close-btn02 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn02 span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+        }
+
+
+
+        .pic-look03 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look03 .content03 {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look03 .content03 ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look03 .content03 ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look03 .content03 ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look03 .content03 ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look03 .content03 ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look03 .content03 ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .pic-look03 .content03 ul li input {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 40px;
+        }
+
+        .close-btn03 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn03 span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+        }
+        .layui-laypage .layui-laypage-limits {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>tell</th>
+                    <th>qq</th>
+                    <th>eamil</th>
+                    <th>wx</th>
+                    <th>msg</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="data-tbod">
+                <!-- <tr>
+            <td><span>前端性能优化前端性能优化前端性能优化前端性能优化前端性能优化前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td data-id="10"><i class="look-up">查看</i><i class="edit">编辑</i><i class="delete">删除</i></td>
+            </tr> -->
+            </tbody>
+        </table>
+        <div class="pages" id="table01"></div>
+    </div>
+    <!-- 查看 -->
+    <div class="pic-look hide">
+        <div class="content">
+            <ul class="content-ul">
+                <!-- <li>
+                <span>title:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>description:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>article:</span>
+                <textarea></textarea>
+            </li>
+            <li>
+                <span>src-img:</span>
+                <img></img>
+            </li> -->
+            </ul>
+            <div class="close-btn">
+                <span>关闭</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/javascript" src='js/jquery.cookie.js'> </script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript">
+var totalcount = 0;
+if ($.rootlevel == 0) {
+    function getInfor(item,list){
+        var item = item || 0;
+        var list = list || 5;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: $.global_AjaxUrl + '/admin/contact_me_list',
+            data: {
+                'item': item,
+                'list': list
+            },
+            success:function(dat){
+                console.log(dat);
+                var res = dat.result.data;
+                totalcount = dat.result.item[0]['count(*)'];
+                var str = '';
+                res.forEach(function (obj) {
+                    str += `<tr>
+                        <td><span>${obj.name}</span></td>
+                        <td><span>${obj.tel}</span></td>
+                        <td><span>${obj.qq}</span></td>
+                        <td><span>${obj.email}</span></td>
+                        <td><span>${obj.wx}</span></td>
+                        <td><span>${obj.msg}</span></td>
+                        <td data-id="${obj.id}"><i class="look-up">查看</i><i class="delete">删除</i></td>
+                        </tr>`;
+                });
+                $('.data-tbod').html(str);
+            },
+            error:function(data){
+                console.log('请求出错');
+            }
+        });
+        } 
+
+} else {
+    function getInfor(item,list){
+        var item = item || 0;
+        var list = list || 5;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: $.global_AjaxUrl + '/admin/contact_me_list',
+            data: {
+                'item': item,
+                'list': list
+            },
+            success:function(dat){
+                console.log(dat);
+                var res = dat.result.data;
+                totalcount = dat.result.item[0]['count(*)'];
+                var str = '';
+                res.forEach(function (obj) {
+                    str += `<tr>
+                        <td><span>${obj.name}</span></td>
+                        <td><span>${obj.tel}</span></td>
+                        <td><span>${obj.qq}</span></td>
+                        <td><span>${obj.email}</span></td>
+                        <td><span>${obj.wx}</span></td>
+                        <td><span>${obj.msg}</span></td>
+                        <td data-id="${obj.id}"><i class="look-up">查看</i></td>
+                        </tr>`;
+                });
+                $('.data-tbod').html(str);
+            },
+            error:function(data){
+                console.log('请求出错');
+            }
+        });
+    } 
+
+}
+
+var pages = 1;
+ // 分页+初次渲染
+ layui.use('laypage', function(){
+    var laypage = layui.laypage;
+    getInfor(1,2);
+    laypage.render({
+        elem: 'table01'
+        ,count: totalcount,
+        limit: 2,
+        theme: '#2f9be3',
+        layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+        jump: function(obj){
+            getInfor(obj.curr,2);
+            pages = obj.curr;
+        }
+    });
+});
+
+// 查看
+$(document).on('click', '.look-up', function () {
+    $('.pic-look').removeClass('hide');
+    var typeId = $(this).parent('td').attr('data-id');
+    console.log(typeId)
+    // 文章详情
+    $.ajax({
+        type: "GET",
+        url: $.global_AjaxUrl + "/admin/contact_me_read",
+        data: {
+            id: typeId
+        },
+        dataType: "json",
+        success: function (dat) {
+            console.log(dat);
+            var res = dat.result.data[0];
+            console.log(res);
+            var str = `<li>
+                        <span>name:</span>
+                        <p>${res.name}</p>
+                    </li>
+                    <li>
+                        <span>tell:</span>
+                        <p>${res.tel}</p>
+                    </li>
+                    <li>
+                        <span>qq:</span>
+                        <p>${res.qq}</p>     
+                    </li>
+                    <li>
+                        <span>email:</span>
+                        <p>${res.email}</p>     
+                    </li>
+                    <li>
+                        <span>wx:</span>
+                        <p>${res.wx}</p>     
+                    </li>
+                    <li>
+                        <span>msg:</span>
+                        <textarea>${res.msg}</textarea>
+                    </li>`;
+            $('.content-ul').html(str);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+//删除
+$(document).on('click', '.delete', function () {
+    var typeId03 = $(this).parent('td').attr('data-id');
+    console.log(typeId03);
+    layui.use(['layer', 'form', 'laypage'], function () {
+        var laypage = layui.laypage;
+        var layer = layui.layer
+            , form = layui.form;
+        layer.open({
+            content: '确认删除？'
+            , btn: ['确认', '取消']
+            , yes: function (index, layero) {
+                //按钮【按钮一】的回调
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                $.ajax({
+                    type: "POST",
+                    url: $.global_AjaxUrl + "/admin/deletecontact_me",
+                    data: {
+                        'id': typeId03,
+                    },
+                    success: function (dat) {
+                        console.log(dat);
+                        if (dat.code == '100') {
+                            getInfor(pages);
+                            laypage.render({
+                                elem: 'table01'
+                                ,count: totalcount,
+                                limit: 2,
+                                theme: '#2f9be3',
+                                layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                                jump: function(obj){
+                                    getInfor(obj.curr);
+                                    pages = obj.curr;
+                                }
+                            });
+                            layer.msg('删除成功！')
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+            , btn2: function (index, layero) {
+                //按钮【按钮二】的回调
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                //return false 开启该代码可禁止点击该按钮关闭
+            }
+            , cancel: function () {
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+    });
+});
+
+
+$(document).on('click', '.close-btn', function () {
+    $('.pic-look').addClass('hide');
+});
+$(document).on('click', '.close-btn02-span02', function () {
+    $('.pic-look02').addClass('hide');
+});
+$(document).on('click', '.cancel', function () {
+    $('.pic-look03').addClass('hide');
+});
+</script>
+
+</html>

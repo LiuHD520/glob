@@ -1,0 +1,165 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>hedong1994</title>
+<link rel="shortcut icon" href="images/titlt-alll.png" type="image/x-icon">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- start plugins -->
+<!--font-Awesome-->
+<link rel="stylesheet" href="fonts/css/font-awesome.min.css">
+<!-- 阿里巴矢量图库 -->
+<link rel="stylesheet" href="iconfont/iconfont.css">
+</head>
+<body>
+<div class="header_bg1">
+<div class="container">
+	<div class="row header">
+		<div class="logo navbar-left">
+			<h1><a href="index.html">hedong1994</a></h1>
+		</div>
+		<div class="h_search navbar-right">
+			<form>
+                <input type="text" class="text search-value" placeholder="尽情搜索">
+                <input type="button" value="搜索" class="search-button"  style="width: 50px;height: 44px;margin-left: -2px;background: #3B3B3B;border:none;color: #fff;">
+            </form>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div class="row h_menu">
+		<nav class="navbar navbar-default navbar-left" role="navigation">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    </div>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+					<li><a href="index.html">首页</a></li>
+					<li class="active"><a href="technology.html">巧技</a></li>
+					<li><a href="about.html">关于</a></li>
+					<!-- <li><a href="blog.html">日志</a></li> -->
+					<li><a href="contact.html">互动</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		    <!-- start soc_icons -->
+		</nav>
+		<div class="soc_icons navbar-right">
+			<ul class="list-unstyled text-center">
+				<li>
+					<a target="_blank" href="http://blog.51cto.com/13507333">
+						<i class="iconfont icon-bokeblogger3"></i>
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://github.com/LiuHD520">
+						<i class="iconfont icon-github"></i>
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://gitee.com/liuHDloveR/events">
+						<i class="iconfont icon-ma"></i>
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://www.npmjs.com">
+						<i class="iconfont icon-434-npm"></i>
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://juejin.im/">
+						<i class="iconfont icon-icon3"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+</div>
+<div class="main_bg"><!-- start main -->
+	<div class="container">
+		<div class="technology row">
+			<h2>my technologies</h2>
+			<div class="technology_list_all">
+				
+			</div>
+
+			<ul class="pagination item-list">
+			  <!-- <li><a href="#">&laquo;</a></li>
+			  <li><a href="#">1</a></li>
+			  <li><a href="#">2</a></li>
+			  <li><a href="#">3</a></li>
+			  <li><a href="#">4</a></li>
+			  <li><a href="#">5</a></li>
+			  <li><a href="#">&raquo;</a></li> -->
+			</ul>
+			<div class="alert alert-warning alert-dismissable">
+			  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			  <strong>人生的磨难是很多的，所以我们不可对于每一件轻微的伤害都过于敏感。在生活磨难面前，精神上的坚强和无动于衷是我们抵抗罪恶和人生意外的最好武器。 —— 洛克</strong>
+			</div>
+		</div>
+	</div>
+</div><!-- end main -->
+</body>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript">
+$(document).on('click', '.search-button', function(){
+    var valu = $('.search-value').val();
+    console.log(valu)
+    window.location.href = "searchPage.html?" + valu + '?';
+})
+var searchvalue = window.location.href.split('?')[1];   // 获取url
+searchvalue = decodeURI(searchvalue);   // 解码
+$('.search-value').val(searchvalue);
+$.ajax({
+    type: "POST",
+    async: false,
+    url: $.global_AjaxUrl + '/indexbottomrefer',
+    data: {
+        'searchValue': searchvalue
+    },
+    success:function(dat){
+        console.log(dat);
+        var res = dat.result.data;
+        var str = '';
+        res.forEach(function (obj) {
+            str += `<div class="technology_list">
+                        <h4>${obj.id+1}. ${obj.title}</h4>
+                        <div class="col-md-10 tech_para">
+                            <p class="para"> ${obj.intro}</p>
+                        </div>
+                        <div class="col-md-2 images_1_of_4 bg1 pull-right">
+                            <img src="${obj.src}" style="width:120px;height:120px;border-radius:50%;">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="read_more">
+                            <a href="${obj.href}" class="fa-btn btn-1 btn-1e">read more</a>
+                        </div>
+                    </div>`;
+        }); 
+        $('.technology_list_all').html(str);
+    },
+    error:function(data){
+        console.log('请求出错');
+    }
+});
+</script>
+</html>

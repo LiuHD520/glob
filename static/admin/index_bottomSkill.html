@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>web-banner</title>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <style rel="stylesheet">
+        body {
+            padding: 2%;
+        }
+        .clearfix:after{content:"."; display:block; height:0; visibility:hidden; clear:both;}
+        .clearfix{ *zoom:1; }
+        .table {
+            width: 100%;
+        }
+
+        .table table {
+            width: 90%;
+        }
+
+        .table table thead tr th {
+            width: 20%;
+        }
+
+        .table table thead tr th:nth-child(1) {
+            width: 10%;
+        }
+
+        .table table thead tr th:nth-child(3) {
+            width: 15%;
+        }
+
+        .table table thead tr th:nth-child(5) {
+            width: 15%;
+        }
+
+        .table table tbody tr td span {
+            display: inline-block;
+            width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .table table tbody tr td:last-child i {
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border: 1px solid #666;
+            margin: 0 4px;
+            font-style: normal;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .table table tbody tr td:last-child i:nth-child(2) {
+            background: #009688;
+            color: #fff;
+            border-color: #009688;
+        }
+
+        .table table tbody tr td:last-child i:nth-child(3) {
+            background: #FF5722;
+            color: #fff;
+            border-color: #FF5722;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .pic-look {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look .content {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look .content ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look .content ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look .content ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look .content ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look .content ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look .content ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .close-btn {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+        }
+
+        .pic-look02 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look02 .content02 {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look02 .content02 ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look02 .content02 ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look02 .content02 ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look02 .content02 ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look02 .content02 ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look02 .content02 ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .pic-look02 .content02 ul li input {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 40px;
+        }
+
+        .close-btn02 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn02 span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+        }
+
+
+
+        .pic-look03 {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .pic-look03 .content03 {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            margin-left: -200px;
+            background: #fff;
+            border-radius: 5px;
+        }
+
+        .pic-look03 .content03 ul {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .pic-look03 .content03 ul li {
+            padding: 10px 0;
+        }
+
+        .pic-look03 .content03 ul li span {
+            display: block;
+            color: #2e82ff;
+        }
+
+        .pic-look03 .content03 ul li p {
+            margin-top: 10px;
+            margin-left: 30px;
+            line-height: 20px;
+        }
+
+        .pic-look03 .content03 ul li img {
+            margin-top: 10px;
+            margin-left: 30px;
+            display: block;
+            width: 200px;
+            height: auto;
+        }
+
+        .pic-look03 .content03 ul li textarea {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 100px;
+        }
+
+        .pic-look03 .content03 ul li input {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 340px;
+            height: 40px;
+        }
+
+        .close-btn03 {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .close-btn03 span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+        }
+
+
+        .header-tabel {
+            width: 90%;
+            padding-bottom: 20px;
+        }
+
+        .header-tabel span {
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            border: 1px solid #2e82ff;
+            color: #2e82ff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+            text-align: center;
+            float: left;
+        }
+        .header-tabel .search {
+            float: left;
+            margin-left: 40%;
+            height: 24px;
+        }
+        .header-tabel .search input {
+            width: 200px;
+            height: 24px;
+            padding: 0 8px;
+        }
+        .header-tabel .search button {
+            width: 50px;
+            height: 28px;
+            border: 1px solid #2e82ff;
+            color: #fff;
+            cursor: pointer;
+            line-height: 24px;
+            border-radius: 3px;
+            margin: 0 4px;
+            text-align: center;
+            background: #2e82ff;
+            margin-left: -4px;
+        }
+        .layui-laypage .layui-laypage-limits {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table">
+        <div class="header-tabel clearfix">
+            <span class="add-span">新增</span>
+            <div class="search">
+                <input type="text" class="search-input" placeholder="随意搜索">
+                <button class="search-button">搜索</button>
+            </div>
+        </div>
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>title</th>
+                    <th>intro</th>
+                    <th>src-img</th>
+                    <th>href</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody class="data-tbod">
+                <!-- <tr>
+            <td><span>前端性能优化前端性能优化前端性能优化前端性能优化前端性能优化前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td><span>前端性能优化</span></td>
+            <td data-id="10"><i class="look-up">查看</i><i class="edit">编辑</i><i class="delete">删除</i></td>
+            </tr> -->
+            </tbody>
+        </table>
+        <div class="pages" id="table01"></div>
+    </div>
+    <!-- 查看 -->
+    <div class="pic-look hide">
+        <div class="content">
+            <ul class="content-ul">
+                <!-- <li>
+                <span>title:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>description:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>article:</span>
+                <textarea></textarea>
+            </li>
+            <li>
+                <span>src-img:</span>
+                <img></img>
+            </li> -->
+            </ul>
+            <div class="close-btn">
+                <span>关闭</span>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑 -->
+    <div class="pic-look02 hide">
+        <div class="content02">
+            <ul class="content-ul02">
+                <!-- <li>
+                <span>title:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>description:</span>
+                <p></p>
+            </li>
+            <li>
+                <span>article:</span>
+                <textarea></textarea>
+            </li>
+            <li>
+                <span>src-img:</span>
+                <img></img>
+            </li> -->
+            </ul>
+            <div class="close-btn02">
+                <span class="close-btn02-span01">修改</span>
+                <span class="close-btn02-span02">关闭</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新增 -->
+    <div class="pic-look03 hide">
+        <div class="content03">
+            <ul class="content-ul03">
+                <li>
+                    <span>序号:</span>
+                    <input type="text" class="edit-input-xuhao">
+                </li>
+                <li>
+                    <span>title:</span>
+                    <input type="text" class="edit-input03">
+                </li>
+                <li>
+                    <span>intro:</span>
+                    <textarea class="edit-text03"></textarea>
+                </li>
+                <li>
+                    <span>src:</span>
+                    <textarea class="edit-art03"></textarea>
+                </li>
+                <li>
+                    <span>href:</span>
+                    <input type="text" class="edit-input03">
+                </li>
+            </ul>
+            <div class="close-btn03">
+                <span class="add01">增加</span>
+                <span class="cancel">取消</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="layui/layui.js"></script>
+<script type="text/javascript" src='js/jquery.cookie.js'> </script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript">
+var totalcount = 0;
+if ($.rootlevel == 0) {
+    function getInfor(item){
+        var item = item || 0;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: $.global_AjaxUrl + '/index_bottom_item',
+            data: {
+                item: item
+            },
+            success:function(dat){
+                console.log(dat);
+                var res = dat.result.data;
+                totalcount = dat.result.item[0]['count(*)'];
+                var str = '';
+                res.forEach(function (obj) {
+                    str += '<tr><td><span>' + obj.title + '</span></td><td><span>' + (obj.intro).substr(0, 200)  + '</span></td><td><span>' + obj.src + '</span></td><td><span>' + obj.href + '</span></td><td data-id="' + obj.id + '"><i class="look-up">查看</i><i class="edit-i">编辑</i><i class="delete">删除</i></td></tr>';
+                });
+                $('.data-tbod').html(str);
+            },
+            error:function(data){
+                console.log('请求出错');
+            }
+        });
+    } 
+} else {
+    $('.add-span').hide();
+    function getInfor(item){
+        var item = item || 0;
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: $.global_AjaxUrl + '/index_bottom_item',
+            data: {
+                item: item
+            },
+            success:function(dat){
+                console.log(dat);
+                var res = dat.result.data;
+                totalcount = dat.result.item[0]['count(*)'];
+                var str = '';
+                res.forEach(function (obj) {
+                    str += '<tr><td><span>' + obj.title + '</span></td><td><span>' + (obj.intro).substr(0, 200)  + '</span></td><td><span>' + obj.src + '</span></td><td><span>' + obj.href + '</span></td><td data-id="' + obj.id + '"><i class="look-up">查看</i></td></tr>';
+                });
+                $('.data-tbod').html(str);
+            },
+            error:function(data){
+                console.log('请求出错');
+            }
+        });
+    } 
+
+}
+
+var pages = 1;
+ // 分页+初次渲染
+ layui.use('laypage', function(){
+    var laypage = layui.laypage;
+    getInfor(1);
+    laypage.render({
+        elem: 'table01'
+        ,count: totalcount,
+        limit: 5,
+        theme: '#2f9be3',
+        layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+        jump: function(obj){
+            getInfor(obj.curr);
+            pages = obj.curr;
+        }
+    });
+});
+
+$(document).on('click', '.search-button', function(){
+    var valu = $('.search-input').val();
+    console.log(valu)
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: $.global_AjaxUrl + '/indexbottomrefer',
+        data: {
+            'searchValue': valu
+        },
+        success:function(dat){
+            console.log(dat);
+            var res = dat.result.data;
+            var str = '';
+            res.forEach(function (obj) {
+                str += '<tr><td><span>' + obj.title + '</span></td><td><span>' + (obj.intro).substr(0, 200)  + '</span></td><td><span>' + obj.src + '</span></td><td><span>' + obj.href + '</span></td><td data-id="' + obj.id + '"><i class="look-up">查看</i><i class="edit-i">编辑</i><i class="delete">删除</i></td></tr>';
+            });
+            $('.data-tbod').html(str);
+        },
+        error:function(data){
+            console.log('请求出错');
+        }
+    });
+})
+// 查看
+$(document).on('click', '.look-up', function () {
+    $('.pic-look').removeClass('hide');
+    var typeId = $(this).parent('td').attr('data-id');
+    console.log(typeId)
+    // 文章详情
+    $.ajax({
+        type: "GET",
+        url: $.global_AjaxUrl + "/index_bottom_read",
+        data: {
+            id: typeId
+        },
+        dataType: "json",
+        success: function (dat) {
+            console.log(dat);
+            var res = dat.result.data[0];
+            console.log(res);
+            var str = `<li>
+                        <span>title:</span>
+                        <p>${res.title}</p>
+                    </li>
+                    <li>
+                        <span>intro:</span>
+                        <textarea>${res.intro}</textarea>
+                    </li>
+                    <li>
+                        <span>src-img:</span>
+                        <img src="${res.src}"></img>
+                        
+                    </li>
+                    <li>
+                        <span>href:</span>
+                        <textarea>${res.href}</textarea>
+                    </li>`;
+            $('.content-ul').html(str);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+//编辑
+$(document).on('click', '.edit-i', function () {
+    $('.pic-look02').removeClass('hide');
+    var typeId = $(this).parent('td').attr('data-id');
+    // 文章详情
+    $.ajax({
+        type: "GET",
+        url: $.global_AjaxUrl + "/index_bottom_read",
+        data: {
+            id: typeId
+        },
+        dataType: "json",
+        success: function (dat) {
+            console.log(dat);
+            var res = dat.result.data[0];
+            console.log(res);
+            var str = `<li>
+                        <span>title:</span>
+                        <input type="text" value="${res.title}" class="edit-input">
+                    </li>
+                    <li>
+                        <span>intro:</span>
+                        <textarea class="edit-text">${res.intro}</textarea>
+                    </li>
+                    <li>
+                        <span>src-img:</span>
+                        <textarea class="edit-art">${res.src}</textarea>
+                    </li>
+                    <li>
+                        <span>href:</span>
+                        <input type="text" value="${res.href}" class="edit-input02">
+                    </li>`;
+            $('.content-ul02').html(str);
+            // 修改
+            $(document).on('click', '.close-btn02-span01', function () {
+                var titleV = $('.edit-input').val();
+                var intro = $('.edit-text').val();
+                var src = $('.edit-art').val();
+                var href = $('.edit-input02').val();
+                console.log(typeId);
+                console.log(titleV);
+                $.ajax({
+                    type: "POST",
+                    url: $.global_AjaxUrl + "/admin/index_bottomEdit",
+                    data: {
+                        'id': typeId,
+                        'title': titleV,
+                        'intro': intro,
+                        'src': src,
+                        'href': href
+                    },
+                    success: function (dat) {
+                        console.log(dat);
+                        if (dat.code == '100') {
+                            layui.use('laypage', function(){
+                                var laypage = layui.laypage;
+                                getInfor(pages);
+                                laypage.render({
+                                    elem: 'table01'
+                                    ,count: totalcount,
+                                    limit: 5,
+                                    theme: '#2f9be3',
+                                    layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                                    jump: function(obj){
+                                        getInfor(obj.curr);
+                                        pages = obj.curr;
+                                    }
+                                });
+                            });
+                            $('.pic-look02').addClass('hide');
+                            layui.use(['layer', 'form'], function () {
+                                var layer = layui.layer
+                                    , form = layui.form;
+                                layer.msg('修改成功！');
+                            });
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+// 新增
+$(document).on('click', '.add-span', function () {
+    $('.pic-look03').removeClass('hide');
+    $(document).on('click', '.add01', function () {
+      
+        var id = $('.edit-input-xuhao').val();
+        var titleV = $('.edit-input03').val();
+        var intro02 = $('.edit-text03').val();
+        var src02 = $('.edit-art03').val();
+        var href = $('.edit-input03').val();
+        console.log(titleV);
+        $.ajax({
+            type: "POST",
+            url: $.global_AjaxUrl + "/admin/addbindex_bottom",
+            data: {
+                'id': id,
+                'title': titleV,
+                'intro': intro02,
+                'src': src02,
+                'href': href
+            },
+            success: function (dat) {
+                console.log(dat);
+                if (dat.code == '100') {
+                    $('.edit-input03').val('');
+                    $('.edit-text03').val('');
+                    $('.edit-art03').val('');
+                    $('.edit-input03').val('');
+                    layui.use('laypage', function(){
+                        var laypage = layui.laypage;
+                        getInfor(pages);
+                        laypage.render({
+                            elem: 'table01'
+                            ,count: totalcount,
+                            limit: 5,
+                            theme: '#2f9be3',
+                            layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                            jump: function(obj){
+                                getInfor(obj.curr);
+                                pages = obj.curr;
+                            }
+                        });
+                    });
+                    $('.pic-look03').addClass('hide');
+                    layui.use(['layer', 'form'], function () {
+                        var layer = layui.layer
+                            , form = layui.form;
+                        layer.msg('添加成功！');
+                    });
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+});
+//删除
+$(document).on('click', '.delete', function () {
+    var typeId03 = $(this).parent('td').attr('data-id');
+    console.log(typeId03);
+    layui.use(['layer', 'form', 'laypage'], function () {
+        var laypage = layui.laypage;
+        var layer = layui.layer
+            , form = layui.form;
+        layer.open({
+            content: '确认删除？'
+            , btn: ['确认', '取消']
+            , yes: function (index, layero) {
+                //按钮【按钮一】的回调
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                $.ajax({
+                    type: "POST",
+                    url: $.global_AjaxUrl + "/admin/deleteindex_bottom",
+                    data: {
+                        'id': typeId03,
+                    },
+                    success: function (dat) {
+                        console.log(dat);
+                        if (dat.code == '100') {
+                            getInfor(pages);
+                            laypage.render({
+                                elem: 'table01'
+                                ,count: totalcount,
+                                limit: 5,
+                                theme: '#2f9be3',
+                                layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                                jump: function(obj){
+                                    getInfor(obj.curr);
+                                    pages = obj.curr;
+                                }
+                            });
+                            layer.msg('删除成功！')
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+            , btn2: function (index, layero) {
+                //按钮【按钮二】的回调
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+                //return false 开启该代码可禁止点击该按钮关闭
+            }
+            , cancel: function () {
+                //do something
+                layer.close(index); //如果设定了yes回调，需进行手工关闭
+            }
+        });
+
+    });
+
+});
+    $(document).on('click', '.close-btn', function () {
+        $('.pic-look').addClass('hide');
+    });
+    $(document).on('click', '.close-btn02-span02', function () {
+        $('.pic-look02').addClass('hide');
+    });
+    $(document).on('click', '.cancel', function () {
+        $('.pic-look03').addClass('hide');
+    });
+</script>
+
+</html>

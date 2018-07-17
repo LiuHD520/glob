@@ -60,10 +60,12 @@
                     'username': username,
                     'password': passwo
                 },
-                success:function(data){
-                    console.log(data);
-                    if(data.code == '100') {
+                success:function(dat){
+                    console.log(dat);
+                    if(dat.code == '100') {
                         window.location.href = 'index.html';
+                    } else {
+                        alert(dat.result.data);
                     }
                 },
                 error:function(data){

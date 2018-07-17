@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>博客后台管理</title>
+    <link rel="shortcut icon" href="images/titlt-alll.png" type="image/x-icon">
+    <link href="iconfont/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="css/common.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <style>
+        .header-pic {
+            text-align: left;
+            font-size: 40px;
+            color: #0065a3;
+            font-weight: 600;
+        }
+        .content-pic {
+            padding: 2%;
+        }
+        .pic-catalogue {
+            padding-top: 20px;
+            padding-left: 30px;
+        }
+        .pic-catalogue li {
+            float: left;
+            padding: 10px;
+        }
+        .pic-catalogue li span {
+            color: #666;
+            font-size: 14px;
+            padding-right: 20px;
+        }
+        .pic-catalogue li u {
+            color: blue;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .pic-catalogue li strong {
+            color: blue;
+            font-size: 14px;
+            margin-left: 6px;
+            cursor: pointer;
+        }
+        .h5-pic {
+            font-size: 24px;
+            padding-top: 20px;
+            color: blue;
+        }
+        .pic-look {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .pic-look img {
+            width: auto;
+            height: auto;
+            position: relative;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content-pic">
+            <div class="header-pic">
+                图片上传
+            </div>
+            <div style="padding-top: 1%;">
+                <form>
+                    <input type="file" name="file" id="file">
+                </form>
+            </div>
+            <h5 class="h5-pic">图片目录</h5>
+            <ul class="pic-catalogue clearfix">
+                <!-- <li><span>目录一</span><u data-id>查看</u></li> -->
+            </ul>
+        </div> 
+    </div>
+    <!-- 查看 -->
+    <div class="pic-look hide">
+        <img src="" alt="sss" class="pic-look-img">
+    </div>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="js/global.js"></script>
+<script>
+    function pic() {
+        $.ajax({
+                type: "GET",
+                async: false,
+                url: $.global_AjaxUrl + '/picSave',
+                success:function(dat){
+                    console.log(dat);
+                    var res = dat.result.data;
+                    var str = '';
+                    res.forEach(function (obj) {
+                        str += ` <li><span>${obj.pic_name}</span><u data-id="${obj.pic_src}">查看</u><strong class="copy_ner" data-clipboard-text="https://hedong1994.top${obj.pic_src}" data-clipboard-action="copy">复制</strong></li>`;
+                    }); 
+                    $('.pic-catalogue').html(str);
+                },
+                error:function(data){
+                    console.log('请求出错');
+                }
+        });
+    }
+    pic();
+    $('#file').on("change", function(){
+        var formData = new FormData();
+        formData.append("file", $("#file")[0].files[0]);
+        $.ajax({
+            url: $.global_AjaxUrl + '/uploadFile',
+            type: "POST",
+            data: formData,
+            processData:false,
+            contentType: false,
+            success: function(res){
+                console.log(res);
+                pic();
+            }
+        })
+    })
+
+    
+var picurl = '';
+$(document).on('click', '.pic-catalogue li u', function(){
+    var srcpic = $(this).attr('data-id');
+    $('.pic-look-img').attr('src',picurl+srcpic);
+    $('.pic-look').removeClass('hide');
+})
+var illustra = function () {
+    var clipboard = new Clipboard(".copy_ner");
+    clipboard.on('success', function(e) {
+        layui.use(['layer'], function () {        
+            var layer = layui.layer;
+            layer.msg('已复制');
+        });
+
+    });
+    clipboard.on('error', function(e) {
+        layui.use(['layer'], function () {        
+            var layer = layui.layer;
+            layer.msg('复制失败');
+        });
+    });
+};
+$(document).on('click', '.pic-catalogue li strong', function(){
+    illustra();
+})
+$(document).on('click', '.pic-look', function(){
+    $('.pic-look').addClass('hide');
+})
+</script>
+</body>
+</html>

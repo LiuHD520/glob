@@ -11,13 +11,16 @@
 		padding: 1em;
 		background: #fff;
 		cursor:pointer;
+	
     }
     #owl-demo .item:hover a{
     		color:#EA6060;
     }
-    #owl-demo .item img{
-        display: block;
-        height: auto;
+    #owl-demo .item img {
+				display: inline-block;
+				height: 120px;
+				width: 120px;
+				border-radius: 50%;
     }
 .item img,.item a,.item p{
 	transition: 0.5s all;

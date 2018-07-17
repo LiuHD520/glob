@@ -1,4 +1,3 @@
-
 @font-face {
     font-family: 'texgyreadventorregular';
     src: url('../fonts/texgyreadventor-regular-webfont.ttf') format('truetype');
@@ -13,6 +12,27 @@ body {
 	font-family: 'open_sansregular';
 	background:#ffffff;
 	font-size: 100%;
+}
+
+.footer {
+	width: 100%;
+	border-top: 1px solid #e5eaec;
+	background-color: #f9fafb;
+	text-align: center;
+	padding: 1%;
+}
+.footer strong {
+	line-height: 24px;
+	font-size: 14px;
+	color: #949494;
+	display: block;
+	width: 100%;
+	font-weight: 400;
+}
+.footer strong a {
+	font-size: 14px;
+	padding: 0 8px;
+	color: #949494;
 }
 /* start header */
 .header_bg{
@@ -184,6 +204,13 @@ body {
 	text-align: center;
 	margin: 0 auto;
 }
+.images_1_of_4  span img {
+	display: block;
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+	object-fit: contain;
+}
 .bg{
 	background: #3b3b3b;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -295,9 +322,9 @@ body {
 .footer_bg{
 	background: #f6f6f6;
 }
-.footer{
+/* .footer{
 	padding: 4%;
-}
+} */
 .copy p{
 	color: #3b3b3b;
 	font-size: 14px;
@@ -880,3 +907,5 @@ body {
 		margin-left: 0;
 	}
 }
+
+

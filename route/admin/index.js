@@ -261,7 +261,7 @@ router.post('/addbindex_bottom', (req, res) => {
   var intro = req.body.intro;
   var src = req.body.src;
   var href = req.body.href;
-  db.query(`INSERT INTO index_bottom (id,title, intro, src, href) VALUE('${id}','${title}', '${intro}', '${src}', '${href}')`,(err, data) => {
+  db.query(`INSERT INTO index_bottom (id, title, intro, src, href) VALUE('${id}', '${title}', '${intro}', '${src}', '${href}')`,(err, data) => {
       if (err) {
         console.error(err);
         res.status(500).send("database error").end();

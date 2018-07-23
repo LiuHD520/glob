@@ -265,7 +265,8 @@ router.post('/contactSubmit', (req, res)=>{
   var email = (req.body.email).toString();
   var wx = (req.body.wx).toString();
   var msg = (req.body.msg).toString();
-  db.query(`INSERT INTO contact_me (name, tel, qq, email, wx, msg) VALUE('${name}', '${tel}', '${qq}', '${email}', '${wx}', '${msg}')`, (err, data)=>{
+  var timestamp = (req.body.timestamp).toString();
+  db.query(`INSERT INTO contact_me (name, tel, qq, email, wx, msg, timestamp) VALUE('${name}', '${tel}', '${qq}', '${email}', '${wx}', '${msg}', '${timestamp}')`, (err, data)=>{
     if(err){
       console.error(err);
       res.status(500).send('database error').end();

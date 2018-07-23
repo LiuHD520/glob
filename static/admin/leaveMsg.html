@@ -296,6 +296,7 @@
                     <th>eamil</th>
                     <th>wx</th>
                     <th>msg</th>
+                    <th>留言时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -370,6 +371,7 @@ if ($.rootlevel == 0) {
                         <td><span>${obj.email}</span></td>
                         <td><span>${obj.wx}</span></td>
                         <td><span>${obj.msg}</span></td>
+                        <td><span>${obj.timestamp}</span></td>
                         <td data-id="${obj.id}"><i class="look-up">查看</i><i class="delete">删除</i></td>
                         </tr>`;
                 });
@@ -406,6 +408,7 @@ if ($.rootlevel == 0) {
                         <td><span>${obj.email}</span></td>
                         <td><span>${obj.wx}</span></td>
                         <td><span>${obj.msg}</span></td>
+                        <td><span>${obj.timestamp}</span></td>
                         <td data-id="${obj.id}"><i class="look-up">查看</i></td>
                         </tr>`;
                 });
@@ -477,6 +480,10 @@ $(document).on('click', '.look-up', function () {
                     <li>
                         <span>msg:</span>
                         <textarea>${res.msg}</textarea>
+                    </li>
+                    <li>
+                        <span>wx:</span>
+                        <p>${res.timestamp}</p>     
                     </li>`;
             $('.content-ul').html(str);
         },

@@ -186,6 +186,8 @@ $(document).on('click', '.contact-me-subit', function(){
 	var email = $('#inputEmailfriend').val();
 	var wx = $('#wxfriend').val();
 	var msg = $('.msg-friend').val();
+	var myDate = new Date();
+	var timestamp=myDate.toLocaleString();
     $.ajax({
 		type: "POST",
 		url: $.global_AjaxUrl + '/contactSubmit',
@@ -195,7 +197,8 @@ $(document).on('click', '.contact-me-subit', function(){
 			'qq': qq,
 			'email': email,
 			'wx': wx,
-			'msg': msg
+			'msg': msg,
+			'timestamp': timestamp
 		},
 		success:function(dat){
 			console.log(dat);
